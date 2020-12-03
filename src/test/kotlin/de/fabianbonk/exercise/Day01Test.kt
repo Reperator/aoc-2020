@@ -71,6 +71,8 @@ class Day01Test {
             arguments(212481360, reference, "reference input"),
             arguments(200000, listOf(10, 11, 2000, 10, 100, 2000), "duplicate numbers"),
             arguments(2018, listOf(2018, 1, 1), "only three numbers"),
+            arguments(20000000, listOf(11, 20, 1000, 1000, 100000, 10000), "two uppers needed"),
+            arguments(200000, listOf(10, 10, 11, 2000, 10000, 1000000), "two lowers needed"),
         )
 
         @ParameterizedTest(name = "{2}")
@@ -87,6 +89,8 @@ class Day01Test {
             arguments(listOf(1, 2, 3), "small elements"),
             arguments(listOf(100000, 200000, 300000), "large elements"),
             arguments(listOf(1, 200000, 3), "small and large elements"),
+            arguments(listOf(1, 20, 11, 1000, 100000), "two uppers needed"),
+            arguments(listOf(1, 10, 11, 2000, 100000), "two lowers needed"),
         )
 
         @ParameterizedTest(name = "{1}")

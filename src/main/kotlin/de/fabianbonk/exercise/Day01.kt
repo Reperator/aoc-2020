@@ -27,23 +27,36 @@ object Day01 {
 
         require(nums.size >= 3) { "at least three elements needed" }
 
-        var lower = 0
-        var upper = 1
+        // set for constant-time contains()
+        // caution: we have to keep in mind that we might need the same value twice
+        val numSet = nums.toSet()
 
-        while (lower < nums.size - 2) {
-            val sum = nums[lower] + nums[upper]
+        outer@ for (lower in 0 until (nums.size - 2)) {
+            for (upper in (lower + 1) until (nums.size - 1)) {
+                val sum = nums[lower] + nums[upper]
 
-            val needed = 2020 - sum
+                if (sum >= 2020) {
+                    // optimization:
+                    // if sum already exceeds 2020, we can't find a third value anymore
+                    // we can skip to the next lower value instead
+                    break
+                }
 
-            if (nums.binarySearch(needed, upper + 1) >= 0) {
-                return nums[lower] * nums[upper] * needed
-            }
+                val needed = 2020 - sum
 
-            if (upper == nums.size - 2) {
-                lower++
-                upper = lower + 1
-            } else {
-                upper++
+                if (needed in numSet) {
+                    if (nums[lower] == needed) {
+                        // we need another `nums[lower]`:
+                        // either `nums[upper] == nums[lower]` -> can't happen because 2020 isn't divisible by 3
+                        // or `nums[upper] > nums[lower]` -> we have skipped past the other (non-existent) `nums[lower]`
+                        break@outer
+                    }
+                    // either we need `nums[upper]` and something to the right of `upper`
+                    // or we need two `nums[upper]` (the second one is at `upper + 1` due to sorting)
+                    if (nums[upper] != needed || nums[upper + 1] == needed) {
+                        return nums[lower] * nums[upper] * needed
+                    }
+                }
             }
         }
 
