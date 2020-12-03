@@ -4,9 +4,7 @@ object Day01 {
     fun partOne(input: List<Int>): Int {
         val nums = input.sorted()
 
-        if (nums.size < 2) {
-            throw IllegalArgumentException("at least two elements needed")
-        }
+        require(nums.size >= 2) { "at least two elements needed" }
 
         var lower = 0
         var upper = nums.size - 1
@@ -27,9 +25,7 @@ object Day01 {
     fun partTwo(input: List<Int>): Int {
         val nums = input.sorted()
 
-        if (nums.size < 3) {
-            throw IllegalArgumentException("at least three elements needed")
-        }
+        require(nums.size >= 3) { "at least three elements needed" }
 
         var lower = 0
         var upper = 1
