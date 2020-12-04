@@ -1,4 +1,4 @@
-package de.fabianbonk.exercise
+package de.fabianbonk.aoc2020
 
 object Day01 {
     fun partOne(input: List<Int>): Int {

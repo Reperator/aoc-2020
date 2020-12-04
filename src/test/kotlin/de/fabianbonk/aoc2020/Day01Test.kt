@@ -1,4 +1,4 @@
-package de.fabianbonk.exercise
+package de.fabianbonk.aoc2020
 
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.DisplayName
@@ -9,7 +9,7 @@ import org.junit.jupiter.params.provider.Arguments.arguments
 import org.junit.jupiter.params.provider.MethodSource
 import java.lang.Integer.parseInt
 
-@DisplayName("Day 01: Report Repair")
+@DisplayName("2020/01: Report Repair")
 class Day01Test {
     private val tutorial = listOf(
         1721,
@@ -21,7 +21,7 @@ class Day01Test {
     )
 
     private val reference = javaClass
-        .getResource("/input-01.txt")
+        .getResource("/2020/input-01.txt")
         .readText()
         .trim()
         .lines()

@@ -1,4 +1,4 @@
-package de.fabianbonk.exercise
+package de.fabianbonk.aoc2020
 
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.DisplayName
@@ -7,7 +7,7 @@ import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.MethodSource
 
-@DisplayName("Day 04: Passport Processing")
+@DisplayName("2020/04: Passport Processing")
 class Day04Test {
     private val tutorial = """
         ecl:gry pid:860033327 eyr:2020 hcl:#fffffd
@@ -26,7 +26,7 @@ class Day04Test {
     """.trimIndent().trim().split("\n\n")
 
     private val reference = javaClass
-        .getResource("/input-04.txt")
+        .getResource("/2020/input-04.txt")
         .readText()
         .trim()
         .split("\n\n")

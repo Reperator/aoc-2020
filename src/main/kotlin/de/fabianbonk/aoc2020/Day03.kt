@@ -1,4 +1,4 @@
-package de.fabianbonk.exercise
+package de.fabianbonk.aoc2020
 
 sealed class Square {
     override fun toString() =

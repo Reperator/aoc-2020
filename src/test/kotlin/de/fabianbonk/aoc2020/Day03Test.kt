@@ -1,4 +1,4 @@
-package de.fabianbonk.exercise
+package de.fabianbonk.aoc2020
 
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.DisplayName
@@ -7,7 +7,7 @@ import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments.arguments
 import org.junit.jupiter.params.provider.MethodSource
 
-@DisplayName("Day 03: Toboggan Trajectory")
+@DisplayName("2020/03: Toboggan Trajectory")
 class Day03Test {
     private val tutorial = """
         ..##.......
@@ -24,7 +24,7 @@ class Day03Test {
     """.trimIndent().trim().let(::Forest)
 
     private val reference = javaClass
-        .getResource("/input-03.txt")
+        .getResource("/2020/input-03.txt")
         .readText()
         .trim()
         .let(::Forest)

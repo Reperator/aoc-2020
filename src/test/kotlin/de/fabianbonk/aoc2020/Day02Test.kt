@@ -1,4 +1,4 @@
-package de.fabianbonk.exercise
+package de.fabianbonk.aoc2020
 
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.DisplayName
@@ -8,7 +8,7 @@ import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments.arguments
 import org.junit.jupiter.params.provider.MethodSource
 
-@DisplayName("Day 02: Password Philosophy")
+@DisplayName("2020/02: Password Philosophy")
 class Day02Test {
     private val tutorial = listOf(
         Policy(1, 3, 'a') to "abcde",
@@ -17,7 +17,7 @@ class Day02Test {
     )
 
     private val reference = javaClass
-        .getResource("/input-02.txt")
+        .getResource("/2020/input-02.txt")
         .readText()
         .trim()
         .lines()
