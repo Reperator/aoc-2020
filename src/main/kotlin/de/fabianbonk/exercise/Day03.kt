@@ -42,20 +42,13 @@ class Forest(
         }
     }
 
-    fun traverse(slope: Slope): Int {
+    fun traverse(slope: Slope) =
         // [0, 0] is not checked in the example; we should start at [right, down]
-        var x = slope.right % width
-        var y = slope.down
-        var trees = 0
-
-        while (y < height) {
-            if (forest[y][x] == TREE) trees++
-            x = (x + slope.right) % width
-            y += slope.down
-        }
-
-        return trees
-    }
+        (slope.down until height step slope.down).fold(
+            Pair(slope.right % width, 0)
+        ) { (x, trees), y ->
+            Pair((x + slope.right) % width, trees + if (forest[y][x] == TREE) 1 else 0)
+        }.second
 
     override fun toString() =
         forest.joinToString(separator = "\n") {
