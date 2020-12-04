@@ -32,7 +32,6 @@ class Day04Test {
         .split("\n\n")
 
     @Nested
-    @DisplayName("Part One")
     inner class PartOne {
         @Suppress("unused")
         private fun `valid inputs`() = listOf(
@@ -48,7 +47,6 @@ class Day04Test {
     }
 
     @Nested
-    @DisplayName("Part Two")
     inner class PartTwo {
         private val tutorialInvalid = """
             eyr:1972 cid:100

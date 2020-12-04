@@ -30,7 +30,6 @@ class Day03Test {
         .let(::Forest)
 
     @Nested
-    @DisplayName("Part One")
     inner class PartOne {
         private val slope = Slope(3, 1)
 
@@ -48,7 +47,6 @@ class Day03Test {
     }
 
     @Nested
-    @DisplayName("Part Two")
     inner class PartTwo {
         private val slopes = listOf(
             Slope(1, 1),

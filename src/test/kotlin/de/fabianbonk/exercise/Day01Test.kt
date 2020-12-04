@@ -28,7 +28,6 @@ class Day01Test {
         .map(::parseInt)
 
     @Nested
-    @DisplayName("Part One")
     inner class PartOne {
         @Suppress("unused")
         private fun `valid inputs`() = listOf(
@@ -63,7 +62,6 @@ class Day01Test {
     }
 
     @Nested
-    @DisplayName("Part Two")
     inner class PartTwo {
         @Suppress("unused")
         private fun `valid inputs`() = listOf(

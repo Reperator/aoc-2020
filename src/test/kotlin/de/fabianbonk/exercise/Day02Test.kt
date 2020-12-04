@@ -27,7 +27,6 @@ class Day02Test {
         }
 
     @Nested
-    @DisplayName("Part One")
     inner class PartOne {
         @Suppress("unused")
         private fun `valid inputs`() = listOf(
@@ -60,7 +59,6 @@ class Day02Test {
     }
 
     @Nested
-    @DisplayName("Part Two")
     inner class PartTwo {
         @Suppress("unused")
         private fun `valid inputs`() = listOf(
