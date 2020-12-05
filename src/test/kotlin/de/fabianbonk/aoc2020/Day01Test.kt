@@ -10,6 +10,7 @@ import org.junit.jupiter.params.provider.MethodSource
 import java.lang.Integer.parseInt
 
 @DisplayName("2020/01: Report Repair")
+@Suppress("unused", "UNUSED_PARAMETER")
 class Day01Test {
     private val tutorial = listOf(
         1721,
@@ -29,7 +30,6 @@ class Day01Test {
 
     @Nested
     inner class PartOne {
-        @Suppress("unused")
         private fun `valid inputs`() = listOf(
             arguments(514579, tutorial, "tutorial input"),
             arguments(539851, reference, "reference input"),
@@ -43,7 +43,6 @@ class Day01Test {
             assertEquals(expected, Day01.partOne(input))
         }
 
-        @Suppress("unused")
         private fun `invalid inputs`() = listOf(
             arguments(emptyList<Int>(), "not enough elements (0)"),
             arguments(listOf(1), "not enough elements (1)"),
@@ -63,7 +62,6 @@ class Day01Test {
 
     @Nested
     inner class PartTwo {
-        @Suppress("unused")
         private fun `valid inputs`() = listOf(
             arguments(241861950, tutorial, "tutorial input"),
             arguments(212481360, reference, "reference input"),
@@ -79,7 +77,6 @@ class Day01Test {
             assertEquals(expected, Day01.partTwo(input))
         }
 
-        @Suppress("unused")
         private fun `invalid inputs`() = listOf(
             arguments(emptyList<Int>(), "not enough elements (0)"),
             arguments(listOf(1), "not enough elements (1)"),

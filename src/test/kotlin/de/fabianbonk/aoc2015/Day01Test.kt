@@ -8,6 +8,7 @@ import org.junit.jupiter.params.provider.Arguments.arguments
 import org.junit.jupiter.params.provider.MethodSource
 
 @DisplayName("2015/01: Not Quite Lisp")
+@Suppress("unused", "UNUSED_PARAMETER")
 class Day01Test {
     private val reference = javaClass
         .getResource("/2015/input-01.txt")
@@ -16,7 +17,6 @@ class Day01Test {
 
     @Nested
     inner class PartOne {
-        @Suppress("unused")
         private fun `valid inputs`() = listOf(
             arguments(0, "(())", "tutorial input 1"),
             arguments(0, "()()", "tutorial input 2"),
@@ -39,7 +39,6 @@ class Day01Test {
 
     @Nested
     inner class PartTwo {
-        @Suppress("unused")
         private fun `valid inputs`() = listOf(
             arguments(1, ")", "tutorial input 1"),
             arguments(5, "()())", "tutorial input 2"),

@@ -8,6 +8,7 @@ import org.junit.jupiter.params.provider.Arguments.arguments
 import org.junit.jupiter.params.provider.MethodSource
 
 @DisplayName("2015/02: I Was Told There Would Be No Math")
+@Suppress("unused", "UNUSED_PARAMETER")
 class Day02Test {
     private val reference = javaClass
         .getResource("/2015/input-02.txt")
@@ -17,7 +18,6 @@ class Day02Test {
 
     @Nested
     inner class PartOne {
-        @Suppress("unused")
         private fun `valid inputs`() = listOf(
             arguments(58, listOf("2x3x4"), "tutorial input 1"),
             arguments(43, listOf("1x1x10"), "tutorial input 2"),
@@ -33,7 +33,6 @@ class Day02Test {
 
     @Nested
     inner class PartTwo {
-        @Suppress("unused")
         private fun `valid inputs`() = listOf(
             arguments(34, listOf("2x3x4"), "tutorial input 1"),
             arguments(14, listOf("1x1x10"), "tutorial input 2"),

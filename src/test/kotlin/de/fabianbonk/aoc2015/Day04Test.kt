@@ -8,12 +8,12 @@ import org.junit.jupiter.params.provider.Arguments.arguments
 import org.junit.jupiter.params.provider.MethodSource
 
 @DisplayName("2015/04: The Ideal Stocking Stuffer")
+@Suppress("unused", "UNUSED_PARAMETER")
 class Day04Test {
     private val reference = "ckczppom"
 
     @Nested
     inner class PartOne {
-        @Suppress("unused")
         private fun `valid inputs`() = listOf(
             arguments(609043, "abcdef", "tutorial input 1"),
             arguments(1048970, "pqrstuv", "tutorial input 2"),
@@ -29,7 +29,6 @@ class Day04Test {
 
     @Nested
     inner class PartTwo {
-        @Suppress("unused")
         private fun `valid inputs`() = listOf(
             arguments(3938038, reference, "reference input"),
         )

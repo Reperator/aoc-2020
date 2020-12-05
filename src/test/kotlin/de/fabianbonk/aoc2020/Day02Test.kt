@@ -9,6 +9,7 @@ import org.junit.jupiter.params.provider.Arguments.arguments
 import org.junit.jupiter.params.provider.MethodSource
 
 @DisplayName("2020/02: Password Philosophy")
+@Suppress("unused", "UNUSED_PARAMETER")
 class Day02Test {
     private val tutorial = listOf(
         Policy(1, 3, 'a') to "abcde",
@@ -28,7 +29,6 @@ class Day02Test {
 
     @Nested
     inner class PartOne {
-        @Suppress("unused")
         private fun `valid inputs`() = listOf(
             arguments(2, tutorial, "tutorial input"),
             arguments(418, reference, "reference input"),
@@ -42,7 +42,6 @@ class Day02Test {
             assertEquals(expected, Day02.partOne(input))
         }
 
-        @Suppress("unused")
         private fun `invalid inputs`() = listOf(
             arguments(listOf(Policy(-1, 2, 'a') to ""), "a < 0"),
             arguments(listOf(Policy(1, -2, 'a') to ""), "b < 0"),
@@ -60,7 +59,6 @@ class Day02Test {
 
     @Nested
     inner class PartTwo {
-        @Suppress("unused")
         private fun `valid inputs`() = listOf(
             arguments(1, tutorial, "tutorial input"),
             arguments(616, reference, "reference input"),
@@ -75,7 +73,6 @@ class Day02Test {
             assertEquals(expected, Day02.partTwo(input))
         }
 
-        @Suppress("unused")
         private fun `invalid inputs`() = listOf(
             arguments(listOf(Policy(0, 2, 'a') to "abc"), "a < 1"),
             arguments(listOf(Policy(1, 0, 'a') to "abc"), "b < 1"),

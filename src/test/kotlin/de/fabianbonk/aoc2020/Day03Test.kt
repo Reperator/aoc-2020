@@ -8,6 +8,7 @@ import org.junit.jupiter.params.provider.Arguments.arguments
 import org.junit.jupiter.params.provider.MethodSource
 
 @DisplayName("2020/03: Toboggan Trajectory")
+@Suppress("unused", "UNUSED_PARAMETER")
 class Day03Test {
     private val tutorial = """
         ..##.......
@@ -33,7 +34,6 @@ class Day03Test {
     inner class PartOne {
         private val slope = Slope(3, 1)
 
-        @Suppress("unused")
         private fun `valid inputs`() = listOf(
             arguments(7, tutorial, slope, "tutorial input"),
             arguments(169, reference, slope, "reference input"),
@@ -56,7 +56,6 @@ class Day03Test {
             Slope(1, 2),
         )
 
-        @Suppress("unused")
         private fun `valid inputs`() = listOf(
             arguments(336L, tutorial, slopes, "tutorial input"),
             arguments(7560370818L, reference, slopes, "reference input"),

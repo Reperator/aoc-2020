@@ -8,6 +8,7 @@ import org.junit.jupiter.params.provider.Arguments.arguments
 import org.junit.jupiter.params.provider.MethodSource
 
 @DisplayName("2015/05: Doesn't He Have Intern-Elves For This?")
+@Suppress("unused", "UNUSED_PARAMETER")
 class Day05Test {
     private val reference = javaClass
         .getResource("/2015/input-05.txt")
@@ -17,7 +18,6 @@ class Day05Test {
 
     @Nested
     inner class PartOne {
-        @Suppress("unused")
         private fun `valid inputs`() = listOf(
             arguments(1, listOf("ugknbfddgicrmopn"), "tutorial input 1"),
             arguments(1, listOf("aaa"), "tutorial input 2"),
@@ -36,7 +36,6 @@ class Day05Test {
 
     @Nested
     inner class PartTwo {
-        @Suppress("unused")
         private fun `valid inputs`() = listOf(
             arguments(1, listOf("qjhvhtzxzqqjkmpb"), "tutorial input 1"),
             arguments(1, listOf("xxyxx"), "tutorial input 2"),

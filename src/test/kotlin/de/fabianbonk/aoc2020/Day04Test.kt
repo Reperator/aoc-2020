@@ -8,6 +8,7 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.MethodSource
 
 @DisplayName("2020/04: Passport Processing")
+@Suppress("unused", "UNUSED_PARAMETER")
 class Day04Test {
     private val tutorial = """
         ecl:gry pid:860033327 eyr:2020 hcl:#fffffd
@@ -33,7 +34,6 @@ class Day04Test {
 
     @Nested
     inner class PartOne {
-        @Suppress("unused")
         private fun `valid inputs`() = listOf(
             Arguments.arguments(2, tutorial, "tutorial input"),
             Arguments.arguments(260, reference, "reference input"),
@@ -79,7 +79,6 @@ class Day04Test {
             iyr:2010 hgt:158cm hcl:#b6652a ecl:blu byr:1944 eyr:2021 pid:093154719
         """.trimIndent().trim().split("\n\n")
 
-        @Suppress("unused")
         private fun `valid inputs`() = listOf(
             Arguments.arguments(2, tutorial, "tutorial input"),
             Arguments.arguments(0, tutorialInvalid, "invalid tutorial input"),
