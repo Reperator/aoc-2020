@@ -26,7 +26,7 @@ data class Policy(
 
     companion object {
         fun ofString(input: String): Policy {
-            val (min, max, letter) = """(\d+)-(\d+) (\p{Lower}|\p{Upper})""".toRegex().find(input)?.destructured
+            val (min, max, letter) = """(\d+)-(\d+) (\p{Alpha})""".toRegex().find(input)?.destructured
                 ?: throw IllegalArgumentException("Policy must match '<min>-<max> <char>' pattern")
 
             return Policy(min.toInt(), max.toInt(), letter[0])
