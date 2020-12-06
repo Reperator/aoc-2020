@@ -7,7 +7,7 @@ abstract class Exercise<T>(
 
     val day = this::class.simpleName!!.takeLast(2)
 
-    open fun partOne(input: T): Int = TODO("Part One is not yet implemented")
+    open fun partOne(input: T): Int = 0
 
-    open fun partTwo(input: T): Int = TODO("Part Two is not yet implemented")
+    open fun partTwo(input: T): Int = 0
 }
