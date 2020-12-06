@@ -18,6 +18,7 @@ repositories {
 
 dependencies {
     implementation("org.jetbrains.kotlin:kotlin-stdlib:1.4.20")
+    implementation("org.jetbrains.kotlin:kotlin-reflect:1.4.20")
     testImplementation("org.junit.jupiter:junit-jupiter:5.7.0")
 }
 

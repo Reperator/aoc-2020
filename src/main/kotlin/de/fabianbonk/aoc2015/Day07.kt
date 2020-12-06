@@ -1,5 +1,7 @@
 package de.fabianbonk.aoc2015
 
+import de.fabianbonk.Exercise
+
 class Env(
     private val gates: Map<String, Gate>
 ) {
@@ -101,10 +103,10 @@ data class Not(
     override fun eval(env: Env) = a.eval(env).inv() and 0xffff
 }
 
-object Day07 {
-    fun partOne(input: List<String>) = Env(Gate.parse(input))["a"]
+object Day07 : Exercise<List<String>>("Some Assembly Required") {
+    override fun partOne(input: List<String>) = Env(Gate.parse(input))["a"]
 
-    fun partTwo(input: List<String>) =
+    override fun partTwo(input: List<String>) =
         Gate.parse(input).let { gates ->
             Env(gates + ("b" to Const(Env(gates)["a"])))["a"]
         }

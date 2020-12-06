@@ -1,6 +1,9 @@
 package de.fabianbonk.aoc2020
 
-object Day04 {
+import de.fabianbonk.Exercise
+import de.fabianbonk.aoc2020.Day04.Validator
+
+object Day04 : Exercise<List<String>>("Passport Processing") {
     private fun parse(input: String) =
         try {
             input.split(' ', '\n').map {
@@ -47,7 +50,7 @@ object Day04 {
         },
     )
 
-    fun partOne(input: List<String>) =
+    override fun partOne(input: List<String>) =
         input.count {
             val fields = parse(it).keys
             validators.all { (key, _) ->
@@ -55,7 +58,7 @@ object Day04 {
             }
         }
 
-    fun partTwo(input: List<String>) =
+    override fun partTwo(input: List<String>) =
         input.count {
             val data = parse(it)
             validators.all { (key, validator) ->

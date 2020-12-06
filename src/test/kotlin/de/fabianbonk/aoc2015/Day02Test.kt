@@ -1,48 +1,16 @@
 package de.fabianbonk.aoc2015
 
-import org.junit.jupiter.api.Assertions.assertEquals
-import org.junit.jupiter.api.DisplayName
-import org.junit.jupiter.api.Nested
-import org.junit.jupiter.params.ParameterizedTest
+import de.fabianbonk.Test
 import org.junit.jupiter.params.provider.Arguments.arguments
-import org.junit.jupiter.params.provider.MethodSource
 
-@DisplayName("2015/02: I Was Told There Would Be No Math")
-@Suppress("unused", "UNUSED_PARAMETER")
-class Day02Test {
-    private val reference = javaClass
-        .getResource("/2015/input-02.txt")
-        .readText()
-        .trim()
-        .lines()
+class Day02Test : Test<Day02, List<String>>(1586300, 3737498) {
+    override val partOneInputs = listOf(
+        arguments(58, listOf("2x3x4"), "tutorial input 1"),
+        arguments(43, listOf("1x1x10"), "tutorial input 2"),
+    )
 
-    @Nested
-    inner class PartOne {
-        private fun `valid inputs`() = listOf(
-            arguments(58, listOf("2x3x4"), "tutorial input 1"),
-            arguments(43, listOf("1x1x10"), "tutorial input 2"),
-            arguments(1586300, reference, "reference input"),
-        )
-
-        @ParameterizedTest(name = "{2}")
-        @MethodSource
-        fun `valid inputs`(expected: Int, input: List<String>, name: String) {
-            assertEquals(expected, Day02.partOne(input))
-        }
-    }
-
-    @Nested
-    inner class PartTwo {
-        private fun `valid inputs`() = listOf(
-            arguments(34, listOf("2x3x4"), "tutorial input 1"),
-            arguments(14, listOf("1x1x10"), "tutorial input 2"),
-            arguments(3737498, reference, "reference input"),
-        )
-
-        @ParameterizedTest(name = "{2}")
-        @MethodSource
-        fun `valid inputs`(expected: Int, input: List<String>, name: String) {
-            assertEquals(expected, Day02.partTwo(input))
-        }
-    }
+    override val partTwoInputs = listOf(
+        arguments(34, listOf("2x3x4"), "tutorial input 1"),
+        arguments(14, listOf("1x1x10"), "tutorial input 2"),
+    )
 }

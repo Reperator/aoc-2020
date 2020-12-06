@@ -1,7 +1,9 @@
 package de.fabianbonk.aoc2020
 
-object Day01 {
-    fun partOne(input: List<Int>): Int {
+import de.fabianbonk.Exercise
+
+object Day01 : Exercise<List<Int>>("Report Repair") {
+    override fun partOne(input: List<Int>): Int {
         val nums = input.sorted()
 
         require(nums.size >= 2) { "at least two elements needed" }
@@ -22,7 +24,7 @@ object Day01 {
         throw IllegalArgumentException("no two values sum to 2020")
     }
 
-    fun partTwo(input: List<Int>): Int {
+    override fun partTwo(input: List<Int>): Int {
         val nums = input.sorted()
 
         require(nums.size >= 3) { "at least three elements needed" }

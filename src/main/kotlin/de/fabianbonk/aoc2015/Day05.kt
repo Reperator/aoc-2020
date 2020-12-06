@@ -1,7 +1,9 @@
 package de.fabianbonk.aoc2015
 
-object Day05 {
-    fun partOne(input: List<String>) =
+import de.fabianbonk.Exercise
+
+object Day05 : Exercise<List<String>>("Doesn't He Have Intern-Elves For This?") {
+    override fun partOne(input: List<String>) =
         input.count { word ->
             val hasVowels = word.count { it in "aeiou" } >= 3
 
@@ -12,7 +14,7 @@ object Day05 {
             hasVowels && hasDuplicates && noBadStrings
         }
 
-    fun partTwo(input: List<String>) =
+    override fun partTwo(input: List<String>) =
         input.count { word ->
             val hasPair = (0 until word.length - 1).any { i ->
                 // allocates two strings; could be done without allocations

@@ -1,6 +1,8 @@
 package de.fabianbonk.aoc2015
 
-object Day02 {
+import de.fabianbonk.Exercise
+
+object Day02 : Exercise<List<String>>("I Was Told There Would Be No Math") {
     private fun parse(dimensions: String) =
         """(\d+)x(\d+)x(\d+)""".toRegex()
             .find(dimensions)
@@ -9,7 +11,7 @@ object Day02 {
             ?.map { it.toInt() }
             ?: throw IllegalArgumentException("dimensions must match <length>x<width>x<height>")
 
-    fun partOne(input: List<String>) =
+    override fun partOne(input: List<String>) =
         input.sumBy {
             val (l, w, h) = parse(it)
             val sides = listOf(
@@ -20,7 +22,7 @@ object Day02 {
             (2 * sides.sum()) + sides.minOrNull()!!
         }
 
-    fun partTwo(input: List<String>) =
+    override fun partTwo(input: List<String>) =
         input.sumBy {
             val dimensions = parse(it)
             (2 * dimensions.sorted().dropLast(1).sum()) + dimensions.fold(1, Int::times)

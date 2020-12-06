@@ -1,5 +1,7 @@
 package de.fabianbonk.aoc2015
 
+import de.fabianbonk.Exercise
+
 data class Pos(
     val x: Int,
     val y: Int,
@@ -14,8 +16,8 @@ data class Pos(
         }
 }
 
-object Day03 {
-    fun partOne(input: String) =
+object Day03 : Exercise<String>("Perfectly Spherical Houses in a Vacuum") {
+    override fun partOne(input: String) =
         input.fold(
             Pos(0, 0).let { it to setOf(it) }
         ) { (pos, visited), dir ->
@@ -23,7 +25,7 @@ object Day03 {
             newPos to visited + newPos
         }.second.size
 
-    fun partTwo(input: String) =
+    override fun partTwo(input: String) =
         input.foldIndexed(
             Pos(0, 0).let { Triple(it, it, setOf(it)) }
         ) { i, (santaPos, roboPos, visited), dir ->

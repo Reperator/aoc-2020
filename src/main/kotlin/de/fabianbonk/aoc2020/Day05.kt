@@ -1,6 +1,8 @@
 package de.fabianbonk.aoc2020
 
-object Day05 {
+import de.fabianbonk.Exercise
+
+object Day05 : Exercise<List<String>>("Binary Boarding") {
     private fun seatId(pos: String) =
         pos.foldIndexed(0) { i, acc, c ->
             when (c) {
@@ -10,10 +12,10 @@ object Day05 {
             }
         }
 
-    fun partOne(input: List<String>) =
+    override fun partOne(input: List<String>) =
         input.map(::seatId).maxOrNull() ?: throw IllegalArgumentException("input must not be empty")
 
-    fun partTwo(input: List<String>) =
+    override fun partTwo(input: List<String>) =
         input.map(::seatId).toSet().let { ids ->
             val prev = ids.find {
                 it + 1 !in ids && it + 2 in ids

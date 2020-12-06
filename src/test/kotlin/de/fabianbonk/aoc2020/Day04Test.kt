@@ -1,15 +1,9 @@
 package de.fabianbonk.aoc2020
 
-import org.junit.jupiter.api.Assertions.assertEquals
-import org.junit.jupiter.api.DisplayName
-import org.junit.jupiter.api.Nested
-import org.junit.jupiter.params.ParameterizedTest
-import org.junit.jupiter.params.provider.Arguments
-import org.junit.jupiter.params.provider.MethodSource
+import de.fabianbonk.Test
+import org.junit.jupiter.params.provider.Arguments.arguments
 
-@DisplayName("2020/04: Passport Processing")
-@Suppress("unused", "UNUSED_PARAMETER")
-class Day04Test {
+class Day04Test : Test<Day04, List<String>>(260, 153, { split("\n\n") }) {
     private val tutorial = """
         ecl:gry pid:860033327 eyr:2020 hcl:#fffffd
         byr:1937 iyr:2017 cid:147 hgt:183cm
@@ -26,70 +20,44 @@ class Day04Test {
         iyr:2011 ecl:brn hgt:59in
     """.trimIndent().trim().split("\n\n")
 
-    private val reference = javaClass
-        .getResource("/2020/input-04.txt")
-        .readText()
-        .trim()
-        .split("\n\n")
+    override val partOneInputs = listOf(
+        arguments(2, tutorial, "tutorial input"),
+    )
 
-    @Nested
-    inner class PartOne {
-        private fun `valid inputs`() = listOf(
-            Arguments.arguments(2, tutorial, "tutorial input"),
-            Arguments.arguments(260, reference, "reference input"),
-        )
+    private val tutorialInvalid = """
+        eyr:1972 cid:100
+        hcl:#18171d ecl:amb hgt:170 pid:186cm iyr:2018 byr:1926
 
-        @ParameterizedTest(name = "{2}")
-        @MethodSource
-        fun `valid inputs`(expected: Int, input: List<String>, name: String) {
-            assertEquals(expected, Day04.partOne(input))
-        }
-    }
+        iyr:2019
+        hcl:#602927 eyr:1967 hgt:170cm
+        ecl:grn pid:012533040 byr:1946
 
-    @Nested
-    inner class PartTwo {
-        private val tutorialInvalid = """
-            eyr:1972 cid:100
-            hcl:#18171d ecl:amb hgt:170 pid:186cm iyr:2018 byr:1926
+        hcl:dab227 iyr:2012
+        ecl:brn hgt:182cm pid:021572410 eyr:2020 byr:1992 cid:277
 
-            iyr:2019
-            hcl:#602927 eyr:1967 hgt:170cm
-            ecl:grn pid:012533040 byr:1946
+        hgt:59cm ecl:zzz
+        eyr:2038 hcl:74454a iyr:2023
+        pid:3556412378 byr:2007
+    """.trimIndent().trim().split("\n\n")
 
-            hcl:dab227 iyr:2012
-            ecl:brn hgt:182cm pid:021572410 eyr:2020 byr:1992 cid:277
+    private val tutorialValid = """
+        pid:087499704 hgt:74in ecl:grn iyr:2012 eyr:2030 byr:1980
+        hcl:#623a2f
 
-            hgt:59cm ecl:zzz
-            eyr:2038 hcl:74454a iyr:2023
-            pid:3556412378 byr:2007
-        """.trimIndent().trim().split("\n\n")
+        eyr:2029 ecl:blu cid:129 byr:1989
+        iyr:2014 pid:896056539 hcl:#a97842 hgt:165cm
 
-        private val tutorialValid = """
-            pid:087499704 hgt:74in ecl:grn iyr:2012 eyr:2030 byr:1980
-            hcl:#623a2f
+        hcl:#888785
+        hgt:164cm byr:2001 iyr:2015 cid:88
+        pid:545766238 ecl:hzl
+        eyr:2022
 
-            eyr:2029 ecl:blu cid:129 byr:1989
-            iyr:2014 pid:896056539 hcl:#a97842 hgt:165cm
+        iyr:2010 hgt:158cm hcl:#b6652a ecl:blu byr:1944 eyr:2021 pid:093154719
+    """.trimIndent().trim().split("\n\n")
 
-            hcl:#888785
-            hgt:164cm byr:2001 iyr:2015 cid:88
-            pid:545766238 ecl:hzl
-            eyr:2022
-
-            iyr:2010 hgt:158cm hcl:#b6652a ecl:blu byr:1944 eyr:2021 pid:093154719
-        """.trimIndent().trim().split("\n\n")
-
-        private fun `valid inputs`() = listOf(
-            Arguments.arguments(2, tutorial, "tutorial input"),
-            Arguments.arguments(0, tutorialInvalid, "invalid tutorial input"),
-            Arguments.arguments(4, tutorialValid, "valid tutorial input"),
-            Arguments.arguments(153, reference, "reference input"),
-        )
-
-        @ParameterizedTest(name = "{2}")
-        @MethodSource
-        fun `valid inputs`(expected: Int, input: List<String>, name: String) {
-            assertEquals(expected, Day04.partTwo(input))
-        }
-    }
+    override val partTwoInputs = listOf(
+        arguments(2, tutorial, "tutorial input"),
+        arguments(0, tutorialInvalid, "invalid tutorial input"),
+        arguments(4, tutorialValid, "valid tutorial input"),
+    )
 }

@@ -1,5 +1,7 @@
 package de.fabianbonk.aoc2020
 
+import de.fabianbonk.Exercise
+
 data class Policy(
     val a: Int,
     val b: Int,
@@ -34,14 +36,21 @@ data class Policy(
     }
 }
 
-object Day02 {
-    fun partOne(input: List<Pair<Policy, String>>): Int =
-        input.count { (policy, password) ->
+object Day02 : Exercise<List<String>>("Password Philosophy") {
+    private fun parse(input: String) =
+        input.split(": ").let { (policy, password) ->
+            Policy.ofString(policy) to password
+        }
+
+    override fun partOne(input: List<String>): Int =
+        input.count {
+            val (policy, password) = parse(it)
             policy.isValidForSledRental(password)
         }
 
-    fun partTwo(input: List<Pair<Policy, String>>): Int =
-        input.count { (policy, password) ->
+    override fun partTwo(input: List<String>): Int =
+        input.count {
+            val (policy, password) = parse(it)
             policy.isValidForTobogganRental(password)
         }
 }

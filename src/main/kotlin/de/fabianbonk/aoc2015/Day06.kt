@@ -1,5 +1,7 @@
 package de.fabianbonk.aoc2015
 
+import de.fabianbonk.Exercise
+
 data class Instruction(
     val op: String,
     val xa: Int,
@@ -8,7 +10,7 @@ data class Instruction(
     val yb: Int,
 )
 
-object Day06 {
+object Day06 : Exercise<List<String>>("Probably a Fire Hazard") {
     private fun parse(input: String) =
         """(turn on|turn off|toggle) (\d+),(\d+) through (\d+),(\d+)""".toRegex()
             .find(input)
@@ -24,7 +26,7 @@ object Day06 {
                 )
             } ?: throw IllegalArgumentException("invalid command")
 
-    fun partOne(input: List<String>): Int {
+    override fun partOne(input: List<String>): Int {
         val lights = Array(1000) {
             Array(1000) { false }
         }
@@ -46,7 +48,7 @@ object Day06 {
         return lights.sumBy { row -> row.count { it } }
     }
 
-    fun partTwo(input: List<String>): Int {
+    override fun partTwo(input: List<String>): Int {
         val lights = Array(1000) {
             Array(1000) { 0 }
         }

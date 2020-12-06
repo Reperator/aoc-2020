@@ -1,92 +1,35 @@
 package de.fabianbonk.aoc2020
 
-import org.junit.jupiter.api.Assertions.assertEquals
-import org.junit.jupiter.api.DisplayName
-import org.junit.jupiter.api.Nested
-import org.junit.jupiter.api.assertThrows
-import org.junit.jupiter.params.ParameterizedTest
+import de.fabianbonk.Test
 import org.junit.jupiter.params.provider.Arguments.arguments
-import org.junit.jupiter.params.provider.MethodSource
 
-@DisplayName("2020/02: Password Philosophy")
-@Suppress("unused", "UNUSED_PARAMETER")
-class Day02Test {
+class Day02Test : Test<Day02, List<String>>(418, 616) {
     private val tutorial = listOf(
-        Policy(1, 3, 'a') to "abcde",
-        Policy(1, 3, 'b') to "cdefg",
-        Policy(2, 9, 'c') to "ccccccccc",
+        "1-3 a: abcde",
+        "1-3 b: cdefg",
+        "2-9 c: ccccccccc",
+    )
+    override val partOneInputs = listOf(
+        arguments(2, tutorial, "tutorial input"),
+        arguments(1, listOf("1-2 A: AA"), "uppercase"),
+        arguments(1, listOf("1-1 a: abc"), "a == b"),
     )
 
-    private val reference = javaClass
-        .getResource("/2020/input-02.txt")
-        .readText()
-        .trim()
-        .lines()
-        .map {
-            val (policy, password) = it.split(": ")
-            Policy.ofString(policy) to password
-        }
+    override val partOneInvalidInputs = listOf(
+        Pair(listOf("2-1 a: "), "b < a"),
+    )
 
-    @Nested
-    inner class PartOne {
-        private fun `valid inputs`() = listOf(
-            arguments(2, tutorial, "tutorial input"),
-            arguments(418, reference, "reference input"),
-            arguments(1, listOf(Policy(1, 2, 'A') to "AA"), "uppercase"),
-            arguments(1, listOf(Policy(1, 1, 'a') to "abc"), "a == b"),
-        )
-
-        @ParameterizedTest(name = "{2}")
-        @MethodSource
-        fun `valid inputs`(expected: Int, input: List<Pair<Policy, String>>, name: String) {
-            assertEquals(expected, Day02.partOne(input))
-        }
-
-        private fun `invalid inputs`() = listOf(
-            arguments(listOf(Policy(-1, 2, 'a') to ""), "a < 0"),
-            arguments(listOf(Policy(1, -2, 'a') to ""), "b < 0"),
-            arguments(listOf(Policy(2, 1, 'a') to ""), "b < a"),
-        )
-
-        @ParameterizedTest(name = "{1}")
-        @MethodSource
-        fun `invalid inputs`(input: List<Int>, name: String) {
-            assertThrows<IllegalArgumentException> {
-                Day01.partTwo(input)
-            }
-        }
-    }
-
-    @Nested
-    inner class PartTwo {
-        private fun `valid inputs`() = listOf(
-            arguments(1, tutorial, "tutorial input"),
-            arguments(616, reference, "reference input"),
-            arguments(0, listOf(Policy(1, 2, 'a') to "aa"), "either a or b"),
-            arguments(1, listOf(Policy(1, 2, 'A') to "AB"), "uppercase"),
-            arguments(1, listOf(Policy(2, 1, 'a') to "ab"), "b < a"),
-        )
-
-        @ParameterizedTest(name = "{2}")
-        @MethodSource
-        fun `valid inputs`(expected: Int, input: List<Pair<Policy, String>>, name: String) {
-            assertEquals(expected, Day02.partTwo(input))
-        }
-
-        private fun `invalid inputs`() = listOf(
-            arguments(listOf(Policy(0, 2, 'a') to "abc"), "a < 1"),
-            arguments(listOf(Policy(1, 0, 'a') to "abc"), "b < 1"),
-            arguments(listOf(Policy(10, 0, 'a') to ""), "a out of bounds"),
-            arguments(listOf(Policy(1, 10, 'a') to ""), "b out of bounds"),
-            arguments(listOf(Policy(1, 1, 'a') to "abc"), "a == b can never succeed"),
-        )
-
-        @ParameterizedTest(name = "{1}")
-        @MethodSource
-        fun `invalid inputs`(input: List<Int>, name: String) {
-            assertThrows<IllegalArgumentException> {
-                Day01.partTwo(input)
-            }
-        }
-    }
+    override val partTwoInputs = listOf(
+        arguments(1, tutorial, "tutorial input"),
+        arguments(0, listOf("1-2 a: aa"), "either a or b"),
+        arguments(1, listOf("1-2 A: AB"), "uppercase"),
+        arguments(1, listOf("2-1 a: ab"), "b < a"),
+    )
+    override val partTwoInvalidInputs = listOf(
+        Pair(listOf("0-2 a: abc"), "a < 1"),
+        Pair(listOf("1-0 a: abc"), "b < 1"),
+        Pair(listOf("10-0 a: "), "a out of bounds"),
+        Pair(listOf("1-10 a: "), "b out of bounds"),
+        Pair(listOf("1-1 a: abc"), "a == b can never succeed"),
+    )
 }
