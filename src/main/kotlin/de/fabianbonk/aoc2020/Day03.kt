@@ -1,5 +1,7 @@
 package de.fabianbonk.aoc2020
 
+import de.fabianbonk.CustomExercise
+
 sealed class Square {
     override fun toString() =
         when (this) {
@@ -65,12 +67,17 @@ data class Slope(
     }
 }
 
-object Day03 {
-    fun partOne(forest: Forest, slope: Slope): Int =
-        forest.traverse(slope)
+object Day03 : CustomExercise<Forest, Long>("Toboggan Trajectory") {
+    override fun partOne(input: Forest) = input.traverse(Slope(3, 1)).toLong()
 
-    fun partTwo(forest: Forest, slopes: List<Slope>) =
-        slopes.fold(1L) { acc, slope ->
-            acc * forest.traverse(slope)
+    override fun partTwo(input: Forest) =
+        listOf(
+            Slope(1, 1),
+            Slope(3, 1),
+            Slope(5, 1),
+            Slope(7, 1),
+            Slope(1, 2),
+        ).fold(1L) { acc, slope ->
+            acc * input.traverse(slope)
         }
 }
