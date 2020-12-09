@@ -26,7 +26,7 @@ abstract class CustomTest<E : CustomExercise<T, U>, T, U>(
     // not all reference inputs are stored in a file
     protected open val reference: T by lazy {
         exercise.run {
-            javaClass.getResource("/$year/input-$day.txt")
+            (javaClass.getResource("/$year/input-$day.txt") ?: javaClass.getResource("/$year/input-$day.json"))
                 ?.readText()
                 ?.trim()
                 ?.processReference()
