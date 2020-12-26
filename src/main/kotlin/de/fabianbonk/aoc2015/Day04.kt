@@ -25,7 +25,7 @@ object Day04 : Exercise<String>("The Ideal Stocking Stuffer") {
 
     override fun partOne(input: String) =
         bruteForce(input) {
-            it[0] == 0.toByte() && it[1] == 0.toByte() && it[2].and(0xf0.toByte()) == 0.toByte()
+            it[0] == 0.toByte() && it[1] == 0.toByte() && it[2] and 0xf0.toByte() == 0.toByte()
         }
 
     override fun partTwo(input: String) =
