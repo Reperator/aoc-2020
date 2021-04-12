@@ -7,4 +7,4 @@ trim_trailing_whitespace = true
 indent_style = space
 indent_size = 4
 max_line_length = 120
-kotlin_imports_layout = ascii
+ij_kotlin_imports_layout = *
