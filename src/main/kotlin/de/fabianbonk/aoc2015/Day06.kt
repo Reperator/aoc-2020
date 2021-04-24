@@ -2,8 +2,22 @@ package de.fabianbonk.aoc2015
 
 import de.fabianbonk.Exercise
 
+enum class Op {
+    On, Off, Toggle;
+
+    companion object {
+        fun parse(input: String) =
+            when (input) {
+                "turn on" -> On
+                "turn off" -> Off
+                "toggle" -> Toggle
+                else -> throw IllegalArgumentException("Unexpected input $input")
+            }
+    }
+}
+
 data class Instruction(
-    val op: String,
+    val op: Op,
     val xa: Int,
     val ya: Int,
     val xb: Int,
@@ -18,7 +32,7 @@ object Day06 : Exercise<List<String>>("Probably a Fire Hazard") {
             ?.drop(1)
             ?.let { (op, xa, ya, xb, yb) ->
                 Instruction(
-                    op = op,
+                    op = Op.parse(op),
                     xa = xa.toInt(),
                     ya = ya.toInt(),
                     xb = xb.toInt(),
@@ -28,7 +42,7 @@ object Day06 : Exercise<List<String>>("Probably a Fire Hazard") {
 
     override fun partOne(input: List<String>): Int {
         val lights = Array(1000) {
-            Array(1000) { false }
+            BooleanArray(1000)
         }
 
         input.forEach {
@@ -36,10 +50,9 @@ object Day06 : Exercise<List<String>>("Probably a Fire Hazard") {
             for (x in xa..xb) {
                 for (y in ya..yb) {
                     lights[x][y] = when (op) {
-                        "turn on" -> true
-                        "turn off" -> false
-                        "toggle" -> !lights[x][y]
-                        else -> throw IllegalStateException("unreachable")
+                        Op.On -> true
+                        Op.Off -> false
+                        Op.Toggle -> !lights[x][y]
                     }
                 }
             }
@@ -50,7 +63,7 @@ object Day06 : Exercise<List<String>>("Probably a Fire Hazard") {
 
     override fun partTwo(input: List<String>): Int {
         val lights = Array(1000) {
-            Array(1000) { 0 }
+            IntArray(1000)
         }
 
         input.forEach {
@@ -58,15 +71,14 @@ object Day06 : Exercise<List<String>>("Probably a Fire Hazard") {
             for (x in xa..xb) {
                 for (y in ya..yb) {
                     when (op) {
-                        "turn on" -> lights[x][y]++
-                        "turn off" -> if (--lights[x][y] < 0) lights[x][y] = 0
-                        "toggle" -> lights[x][y] += 2
-                        else -> throw IllegalStateException("unreachable")
+                        Op.On -> lights[x][y]++
+                        Op.Off -> if (--lights[x][y] < 0) lights[x][y] = 0
+                        Op.Toggle -> lights[x][y] += 2
                     }
                 }
             }
         }
 
-        return lights.sumBy { row -> row.sum() }
+        return lights.sumBy { it.sum() }
     }
 }
