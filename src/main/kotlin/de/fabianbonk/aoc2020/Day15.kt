@@ -2,11 +2,9 @@ package de.fabianbonk.aoc2020
 
 import de.fabianbonk.Exercise
 
-object Day15 : Exercise<Pair<Int, List<Int>>>("Rambunctious Recitation") {
-    override fun partOne(input: Pair<Int, List<Int>>): Int {
-        val (rounds, startingNumbers) = input
-
-        // IntArray is significantly faster than LinkedHashMap<Int, Int> or Array<Int?>
+object Day15 : Exercise<List<Int>>("Rambunctious Recitation") {
+    private fun calculate(rounds: Int, startingNumbers: List<Int>): Int {
+        // IntArray is significantly faster than LinkedHashMap<Int, Int> or Array<Int>
         val state = IntArray(rounds) // assuming all startingNumbers are less than rounds
 
         startingNumbers.forEachIndexed { i, n ->
@@ -22,15 +20,13 @@ object Day15 : Exercise<Pair<Int, List<Int>>>("Rambunctious Recitation") {
         for (i in startingNumbers.size until rounds) {
             val lastRound = state[prev]
             state[prev] = i
-            prev = if (lastRound == 0) {
-                0
-            } else {
-                i - lastRound
-            }
+            prev = if (lastRound == 0) 0 else i - lastRound
         }
 
         return prev
     }
 
-    override fun partTwo(input: Pair<Int, List<Int>>) = partOne(input)
+    override fun partOne(input: List<Int>) = calculate(2020, input)
+
+    override fun partTwo(input: List<Int>) = calculate(30_000_000, input)
 }
