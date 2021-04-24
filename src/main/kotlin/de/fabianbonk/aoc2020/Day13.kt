@@ -31,8 +31,6 @@ object Day13 : CustomExercise<Pair<Int, List<String>>, Long>("Shuttle Search") {
         var (step, t) = buses.maxByOrNull {
             it.first
         }?.also {
-            val x = 1
-            x
             buses.remove(it)
         } ?: return 0L
 
