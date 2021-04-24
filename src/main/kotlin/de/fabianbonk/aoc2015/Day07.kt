@@ -11,10 +11,6 @@ class Env(
         store[wire]
             ?: gates[wire]?.eval(this)?.also { store[wire] = it }
             ?: throw IllegalArgumentException("undefined signal $wire")
-
-    operator fun set(wire: String, value: Int) {
-        store[wire] = value
-    }
 }
 
 sealed class Gate {
@@ -29,7 +25,7 @@ sealed class Gate {
             }
 
         fun parse(input: List<String>) =
-            input.map { def ->
+            input.associate { def ->
                 val shortCircuit = """(\p{Lower}+|\d+) -> (\p{Lower}+)""".toRegex()
                 val shift = """(\p{Lower}+|\d+) ([RL]SHIFT) (\d+) -> (\p{Lower}+)""".toRegex()
                 val binop = """(\p{Lower}+|\d+) (AND|OR) (\p{Lower}+|\d+) -> (\p{Lower}+)""".toRegex()
@@ -41,7 +37,7 @@ sealed class Gate {
                     }
                     shift.matches(def) -> {
                         val (a, op, bits, wire) = shift.find(def)!!.destructured
-                        wire to (if (op == "RSHIFT") ::Rshift else ::Lshift)(source(a), bits.toInt())
+                        wire to (if (op[0] == 'R') ::Rshift else ::Lshift)(source(a), bits.toInt())
                     }
                     binop.matches(def) -> {
                         val (a, op, b, wire) = binop.find(def)!!.destructured
@@ -53,7 +49,7 @@ sealed class Gate {
                     }
                     else -> throw IllegalStateException("unexpected gate definition: $def")
                 }
-            }.toMap()
+            }
     }
 }
 
