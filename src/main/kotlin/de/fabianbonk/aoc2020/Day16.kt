@@ -11,14 +11,14 @@ data class TicketInfo(
         fun parse(input: String): TicketInfo {
             val (rawFields, your, nearby) = input.split("\n\n")
 
-            val fields = rawFields.lines().map { field ->
+            val fields = rawFields.lines().associate { field ->
                 val (name, ranges) = field.split(": ")
                 val (range1, range2) = ranges.split(" or ").map { range ->
                     val (lower, upper) = range.split("-").map { it.toInt() }
                     lower..upper
                 }
                 name to Pair(range1, range2)
-            }.toMap()
+            }
 
             val yourTicket = your.removePrefix("your ticket:\n").split(',').map { it.toInt() }
 
