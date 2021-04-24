@@ -13,7 +13,7 @@ object Day05 : Exercise<List<String>>("Binary Boarding") {
         }
 
     override fun partOne(input: List<String>) =
-        input.map(::seatId).maxOrNull() ?: throw IllegalArgumentException("input must not be empty")
+        input.maxOfOrNull(::seatId) ?: throw IllegalArgumentException("input must not be empty")
 
     override fun partTwo(input: List<String>) =
         input.map(::seatId).toSet().let { ids ->
