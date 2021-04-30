@@ -20,7 +20,7 @@ dependencies {
     implementation("org.jetbrains.kotlin:kotlin-stdlib:1.4.32")
     implementation("org.jetbrains.kotlin:kotlin-reflect:1.4.32")
     implementation("com.fasterxml.jackson.core:jackson-databind:2.12.0")
-    testImplementation("org.junit.jupiter:junit-jupiter:5.7.0")
+    testImplementation("org.junit.jupiter:junit-jupiter:5.7.1")
 }
 
 tasks.withType<Test> {
