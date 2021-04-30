@@ -96,3 +96,51 @@ inline fun List<Boolean>.toLong(): Long {
         (acc shl 1) or if (b) 1L else 0L
     }
 }
+
+/**
+ * @return `true` if [this] is an even number; `false` otherwise.
+ */
+inline val Long.isEven: Boolean
+    get() = this and 1L == 0L
+
+/**
+ * @return `true` if [this] is an odd number; `false` otherwise.
+ */
+inline val Long.isOdd: Boolean
+    get() = this and 1L == 1L
+
+/**
+ * @return `true` if [this] is an even number; `false` otherwise.
+ */
+inline val Int.isEven: Boolean
+    get() = this and 1 == 0
+
+/**
+ * @return `true` if [this] is an odd number; `false` otherwise.
+ */
+inline val Int.isOdd: Boolean
+    get() = this and 1 == 1
+
+/**
+ * @return `true` if [this] is an even number; `false` otherwise.
+ */
+inline val Short.isEven: Boolean
+    get() = this.toInt() and 1 == 0
+
+/**
+ * @return `true` if [this] is an odd number; `false` otherwise.
+ */
+inline val Short.isOdd: Boolean
+    get() = this.toInt() and 1 == 1
+
+/**
+ * @return `true` if [this] is an even number; `false` otherwise.
+ */
+inline val Byte.isEven: Boolean
+    get() = this.toInt() and 1 == 0
+
+/**
+ * @return `true` if [this] is an odd number; `false` otherwise.
+ */
+inline val Byte.isOdd: Boolean
+    get() = this.toInt() and 1 == 1

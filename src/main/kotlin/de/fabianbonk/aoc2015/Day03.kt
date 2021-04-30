@@ -1,6 +1,7 @@
 package de.fabianbonk.aoc2015
 
 import de.fabianbonk.Exercise
+import de.fabianbonk.isEven
 
 data class Pos(
     val x: Int,
@@ -29,7 +30,7 @@ object Day03 : Exercise<String>("Perfectly Spherical Houses in a Vacuum") {
         input.foldIndexed(
             Pos(0, 0).let { Triple(it, it, setOf(it)) }
         ) { i, (santaPos, roboPos, visited), dir ->
-            if (i % 2 == 0) {
+            if (i.isEven) {
                 val newSantaPos = santaPos.move(dir)
                 Triple(newSantaPos, roboPos, visited + newSantaPos)
             } else {
