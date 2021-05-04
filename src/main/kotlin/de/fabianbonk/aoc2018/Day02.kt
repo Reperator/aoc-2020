@@ -1,12 +1,13 @@
 package de.fabianbonk.aoc2018
 
 import de.fabianbonk.CustomExercise
+import de.fabianbonk.toInt
 
 object Day02 : CustomExercise<List<String>, String>("Inventory Management System") {
     override fun partOne(input: List<String>) =
         input.fold(0 to 0) { (twos, threes), line ->
             val frequencies = line.groupBy { it }.map { it.value.size }
-            (twos + if (2 in frequencies) 1 else 0) to (threes + if (3 in frequencies) 1 else 0)
+            (twos + (2 in frequencies).toInt()) to (threes + (3 in frequencies).toInt())
         }.let { (twos, threes) ->
             "${twos * threes}"
         }

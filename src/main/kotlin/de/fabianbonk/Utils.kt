@@ -81,7 +81,7 @@ inline fun List<Boolean>.toInt(): Int {
         throw IllegalArgumentException("size ($size) is not within [0, ${Int.SIZE_BITS}).")
     }
     return fold(0) { acc, b ->
-        (acc shl 1) or if (b) 1 else 0
+        (acc shl 1) or b.toInt()
     }
 }
 
@@ -93,7 +93,7 @@ inline fun List<Boolean>.toLong(): Long {
         throw IllegalArgumentException("size ($size) is not within [0, ${Long.SIZE_BITS}).")
     }
     return fold(0L) { acc, b ->
-        (acc shl 1) or if (b) 1L else 0L
+        (acc shl 1) or b.toLong()
     }
 }
 
@@ -144,3 +144,23 @@ inline val Byte.isEven: Boolean
  */
 inline val Byte.isOdd: Boolean
     get() = this.toInt() and 1 == 1
+
+/**
+ * @return `1` if [this] is `true`; `0` otherwise.
+ */
+inline fun Boolean.toByte() = toInt().toByte()
+
+/**
+ * @return `1` if [this] is `true`; `0` otherwise.
+ */
+inline fun Boolean.toShort() = toInt().toShort()
+
+/**
+ * @return `1` if [this] is `true`; `0` otherwise.
+ */
+inline fun Boolean.toInt() = if (this) 1 else 0
+
+/**
+ * @return `1` if [this] is `true`; `0` otherwise.
+ */
+inline fun Boolean.toLong() = if (this) 1L else 0L

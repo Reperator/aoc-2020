@@ -1,6 +1,7 @@
 package de.fabianbonk.aoc2020
 
 import de.fabianbonk.CustomExercise
+import de.fabianbonk.toInt
 
 sealed class Square {
     override fun toString() =
@@ -49,7 +50,7 @@ class Forest(
         (slope.down until height step slope.down).fold(
             Pair(slope.right % width, 0)
         ) { (x, trees), y ->
-            Pair((x + slope.right) % width, trees + if (forest[y][x] == TREE) 1 else 0)
+            Pair((x + slope.right) % width, trees + (forest[y][x] == TREE).toInt())
         }.second
 
     override fun toString() =
