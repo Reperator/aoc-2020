@@ -3,60 +3,39 @@ package de.fabianbonk.aoc2020
 import de.fabianbonk.CustomExercise
 import de.fabianbonk.toInt
 
-sealed class Square {
-    override fun toString() =
-        when (this) {
-            OPEN -> "."
-            TREE -> "#"
-        }
-}
-
-object OPEN : Square()
-
-object TREE : Square()
-
-class Forest(
-    input: String,
+data class Forest(
+    val forest: List<List<Boolean>>,
+    val height: Int,
+    val width: Int,
 ) {
-    private val forest: List<List<Square>>
-
-    private val height: Int
-
-    private val width: Int
-
-    init {
-        val lines = input.lines()
-
-        require(lines.isNotEmpty()) { "there must be at least one line" }
-        require(lines.all { it.length == lines[0].length }) { "all lines must have the same length" }
-
-        height = lines.size
-
-        width = lines[0].length
-
-        forest = lines.map { line ->
-            line.map { square ->
-                when (square) {
-                    '.' -> OPEN
-                    '#' -> TREE
-                    else -> throw IllegalArgumentException("unexpected character: $square")
-                }
-            }
-        }
-    }
-
     fun traverse(slope: Slope) =
         // [0, 0] is not checked in the example; we should start at [right, down]
         (slope.down until height step slope.down).fold(
             Pair(slope.right % width, 0)
         ) { (x, trees), y ->
-            Pair((x + slope.right) % width, trees + (forest[y][x] == TREE).toInt())
+            Pair((x + slope.right) % width, trees + forest[y][x].toInt())
         }.second
 
-    override fun toString() =
-        forest.joinToString(separator = "\n") {
-            it.joinToString(separator = "")
+    companion object {
+        fun parse(input: String): Forest {
+            val lines = input.lines()
+
+            require(lines.isNotEmpty()) { "there must be at least one line" }
+            require(lines.all { it.length == lines.first().length }) { "all lines must have the same length" }
+
+            val forest = lines.map { line ->
+                line.map { square ->
+                    when (square) {
+                        '.' -> false
+                        '#' -> true
+                        else -> throw IllegalArgumentException("unexpected character: $square")
+                    }
+                }
+            }
+
+            return Forest(forest, height = lines.size, width = lines.first().length)
         }
+    }
 }
 
 data class Slope(

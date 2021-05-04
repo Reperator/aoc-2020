@@ -6,7 +6,7 @@ import org.junit.jupiter.params.provider.Arguments.arguments
 class Day03Test : CustomTest<Day03, Forest, Long>(
     169L,
     7560370818L,
-    { Forest(this) }
+    Forest::parse
 ) {
     private val tutorial = """
         ..##.......
@@ -20,7 +20,7 @@ class Day03Test : CustomTest<Day03, Forest, Long>(
         #.##...#...
         #...##....#
         .#..#...#.#
-    """.trimIndent().trim().let(::Forest)
+    """.trimIndent().trim().let(Forest::parse)
 
     override val partOneInputs = listOf(
         arguments(7L, tutorial, "tutorial input"),
