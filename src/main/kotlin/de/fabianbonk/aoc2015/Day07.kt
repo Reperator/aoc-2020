@@ -13,8 +13,8 @@ class Env(
             ?: throw IllegalArgumentException("undefined signal $wire")
 }
 
-sealed class Gate {
-    abstract fun eval(env: Env): Int
+sealed interface Gate {
+    fun eval(env: Env): Int
 
     companion object {
         private fun source(input: String) =
@@ -55,47 +55,47 @@ sealed class Gate {
 
 data class Const(
     val value: Int,
-) : Gate() {
+) : Gate {
     override fun eval(env: Env) = value and 0xffff
 }
 
 data class Signal(
     val a: String,
-) : Gate() {
+) : Gate {
     override fun eval(env: Env) = env[a]
 }
 
 data class And(
     val a: Gate,
     val b: Gate,
-) : Gate() {
+) : Gate {
     override fun eval(env: Env) = a.eval(env) and b.eval(env)
 }
 
 data class Or(
     val a: Gate,
     val b: Gate,
-) : Gate() {
+) : Gate {
     override fun eval(env: Env) = a.eval(env) or b.eval(env)
 }
 
 data class Rshift(
     val a: Gate,
     val bits: Int,
-) : Gate() {
+) : Gate {
     override fun eval(env: Env) = (a.eval(env) ushr bits)
 }
 
 data class Lshift(
     val a: Gate,
     val bits: Int,
-) : Gate() {
+) : Gate {
     override fun eval(env: Env) = (a.eval(env) shl bits) and 0xffff
 }
 
 data class Not(
     val a: Gate,
-) : Gate() {
+) : Gate {
     override fun eval(env: Env) = a.eval(env).inv() and 0xffff
 }
 

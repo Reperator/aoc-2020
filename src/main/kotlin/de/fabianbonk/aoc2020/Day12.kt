@@ -34,10 +34,10 @@ data class Waypoint(
     }
 }
 
-sealed class ShipInstr {
-    abstract fun walk(from: Ship): Ship
+sealed interface ShipInstr {
+    fun walk(from: Ship): Ship
 
-    abstract fun waypoint(from: Waypoint): Waypoint
+    fun waypoint(from: Waypoint): Waypoint
 
     companion object {
         fun parse(input: String): ShipInstr {
@@ -59,7 +59,7 @@ sealed class ShipInstr {
 data class Cardinal(
     val dir: Dir,
     val dist: Int,
-) : ShipInstr() {
+) : ShipInstr {
     override fun walk(from: Ship) =
         when (dir) {
             Dir.North -> from.copy(y = from.y + dist)
@@ -80,7 +80,7 @@ data class Cardinal(
 data class Turn(
     val right: Boolean,
     val n: Int,
-) : ShipInstr() {
+) : ShipInstr {
     override fun walk(from: Ship) =
         from.copy(facing = from.facing.iterate(times = n) { it.turn(right) })
 
@@ -94,7 +94,7 @@ data class Turn(
 
 data class Forward(
     val n: Int,
-) : ShipInstr() {
+) : ShipInstr {
     override fun walk(from: Ship) =
         when (from.facing) {
             Dir.North -> from.copy(y = from.y + n)

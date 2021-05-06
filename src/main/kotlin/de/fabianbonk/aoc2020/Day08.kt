@@ -2,13 +2,13 @@ package de.fabianbonk.aoc2020
 
 import de.fabianbonk.Exercise
 
-sealed class Instr
+sealed interface Instr
 
-data class Nop(val n: Int) : Instr()
+data class Nop(val n: Int) : Instr
 
-data class Acc(val n: Int) : Instr()
+data class Acc(val n: Int) : Instr
 
-data class Jmp(val n: Int) : Instr()
+data class Jmp(val n: Int) : Instr
 
 data class VM(
     val program: List<Instr>,
