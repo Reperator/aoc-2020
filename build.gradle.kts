@@ -9,7 +9,7 @@ group = "de.fabianbonk"
 version = "1.0-SNAPSHOT"
 
 tasks.withType<KotlinCompile<KotlinJvmOptions>> {
-    kotlinOptions.jvmTarget = "15"
+    kotlinOptions.jvmTarget = "16"
 }
 
 repositories {
