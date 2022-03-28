@@ -116,6 +116,6 @@ class AoCDisplayNameGenerator : DisplayNameGenerator.Standard() {
  */
 private fun getObj(clazz: Class<out CustomTest<*, *, *>>): CustomExercise<*, *> {
     val superclass = clazz.genericSuperclass as ParameterizedType
-    val exercise = (superclass.actualTypeArguments[0] as Class<Exercise<*>>).kotlin
+    val exercise = (superclass.actualTypeArguments[0] as Class<CustomExercise<*, *>>).kotlin
     return exercise.objectInstance!!
 }
