@@ -19,7 +19,7 @@ repositories {
 dependencies {
     implementation("org.jetbrains.kotlin:kotlin-stdlib:1.6.10")
     implementation("org.jetbrains.kotlin:kotlin-reflect:1.6.10")
-    implementation("com.fasterxml.jackson.core:jackson-databind:2.12.2")
+    implementation("com.fasterxml.jackson.core:jackson-databind:2.13.2")
     testImplementation("org.junit.jupiter:junit-jupiter:5.8.2")
 }
 
